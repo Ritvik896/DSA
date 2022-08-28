@@ -1,1 +1,158 @@
 
+//A Heap is a special tree based data structure in which the tree is a complete 
+//binary tree
+
+// two types - Max heap :- key present at root node must be greatest among the keys present at all 
+//of its children.
+//Min-heap:- the key present at root node must be minimum among the keys in children
+
+
+
+//1)Creating nodes in memory and link them in tree structure(min-heap)
+/*
+2)Arranging the Heap DS elements in an Array structure(min-heap)
+
+    representationm:-
+      1)Root element -> A[0]
+      2)Indexes for other node:-
+            A[(i-1)/2] -> PARENT Node
+            A[(2*i)+1] -> LEFT child Node
+            A[(2*i)+2] -> RIGHT child Node
+
+
+Array is preffered 
+*/
+
+/*
+
+Operations using Heap DS-
+
+1) getMin() - returns the root element of minHeap. O(1)
+2) getMax() - returns the root element of MaxHeap. O(1)
+3) extractMin() - Removes the minimum element from MinHeap. O(Logn) also eliminates the min val
+4) insert() - Inserting a new key takes O(Logn) time.We add a new key at
+              the end of the tree
+5) delete() - Deleting a key takes O(Logn) time.
+6) heapify() - Process for creating a heap data structure from a binary tree.(restructuring)
+*/
+
+//Min heap
+
+#include<iostream>
+#include<math.h>
+using namespace std;
+
+class MinHeap{
+
+  public:
+
+    int *harr;//pointer to array of elements in heap
+    int capacity;//maximum possible sie of min heap
+    int heap_size;//Current number of elements in min heap
+
+    MinHeap(int cap){
+      heap_size=0;
+      capacity=cap;
+      harr = new int[cap];
+    }
+
+    void linearSearch(int val){
+      for(int i=0;i<heap_size;i++){
+        if(harr[i]==val){
+            cout<<"Value Found!";
+            return;
+        }
+      }
+      cout<<"Value NOT Found!";
+    }
+    
+     void printArray(){
+      for (int i=0;i<heap_size;i++) cout<<harr[i]<<" ";
+      cout<<endl;
+     }
+
+     int height(){
+      return ceil(log2(heap_size+1))-1;
+     }
+};
+
+int main(){
+  int s;
+  cout<<"Enter size of Min Heap"<<endl;
+  cin>>s;
+  MinHeap obj(s);
+  cout<<"Min Heap created"<<endl;
+
+  int option,val;
+  do{
+    cout<<"What operation do you want to perform? "
+    <<" Select Option number. Enter 0 to exit. "
+    <<endl;
+
+    cout<< "1. Insert Key/Node"<<endl;
+    cout<< "2. Search Key/Node"<<endl;
+    cout<< "3. Delete Key/Node"<<endl;
+    cout<< "4. Get Min"<<endl;
+    cout<< "5. Extract Min"<<endl;
+    cout<< "6. Height of Heap"<<endl;
+    cout<< "7. Print/Traversal Heap Values"<<endl;
+    cout<< "8. Clear Screen"<<endl;//clear cmd prompt
+    cout<< "0. Exit Program"<<endl;
+
+    cout<<" Enter option: ";
+    cin>>option;
+    switch(option){
+      case 0:
+        break;
+      case 1:
+        cout<<"INSERT Operation -"<<endl;
+        cout<<"Enter VALUE to INSERT in HEAP: ";
+        cin>>val;
+        //obj.insertKey(val);
+        cout<<endl;
+        break;
+      case 2:
+        cout<<"SEARCH Operation -"<<endl;
+        cout<<"Enter VALUE to SEARCH in HEAP: ";
+        cin>>val;
+        //obj.linearSearch(val);
+        cout<<endl;
+        break;
+      case 3:
+        cout<<"DELETE Operation -"<<endl;
+        cout<<"Enter VALUE to DELETE in HEAP: ";
+        cin>>val;
+        //obj.deleteKey(val);
+        cout<<endl;
+        break;
+      case 4:
+        cout<<"GET Min value : ";
+        //cout<<obj.getMin()<<endl;
+        cout<<endl;
+        break;
+      case 5:
+        cout<<"EXTRACT Min value : ";
+        //cout<<obj.extractMin()<<endl;
+        cout<<endl;
+        break;
+      case 6:
+        cout<<"HEAP TREE HEIGHT : ";
+        //cout<<obj.height()<<endl;
+        cout<<endl;
+        break;
+      case 7:
+        cout<<"PRINT Heap Array : "<<endl;
+        //obj.printArray();
+        cout<<endl;
+        break;
+      case 8:
+        system("cls");
+        break;
+      default:
+        cout<<"ENter Proper Option number"<<endl;
+    }
+
+  }while(option!=0);
+
+  return 0;
+}
